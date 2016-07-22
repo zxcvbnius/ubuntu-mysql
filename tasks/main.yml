@@ -1,0 +1,31 @@
+---
+- name: Start the MYSQL service
+  become: yes
+  service:
+    name: mysql
+    state: started
+    enabled: true
+
+
+- name: Update mysql root password for all root accounts
+  become: yes
+  mysql_user:
+    name: "{{ wp_mysql_user }}"
+    host: "{{ item }}"
+    password: "{{ wp_mysql_password }}"
+    login_user: "{{ wp_mysql_user }}"
+    login_password: "{{ wp_mysql_password }}"
+    check_implicit_admin: yes
+    priv: "*.*:ALL,GRANT"
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+
+
+- name: Create wordpress database
+  become: yes
+  mysql_db:
+    name={{ wp_mysql_db }} state=present

@@ -1,0 +1,5 @@
+---
+# Remember to replace these values
+wp_mysql_db: wordpress
+wp_mysql_user: vagrant
+wp_mysql_password: vagrant
