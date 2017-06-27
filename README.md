@@ -26,6 +26,14 @@ Example Playbook
       roles:
          - mysql
 
+
+
+
+Ansible Galaxy
+----------------
+You can find the role [here](https://galaxy.ansible.com/zxcvbnius/ubuntu-mysql/)
+
+
 License
 -------
 
